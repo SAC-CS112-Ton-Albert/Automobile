@@ -4,44 +4,90 @@ package automobile;
 *
 * @author albertton
 */
+
+
 public class CreateCar {
-   
- private int Caryear;
- private String Carmake;
- private String Carmodel;
- private String Carname;
- private int CarnumberOfGears;
- private String Carcolor;
 
- public void CarAttributes(int year, String make, String model, String name, int numberOfGears, String color, int cycle)
- {
-  Caryear = year;
-  Carmake = make;
-  Carmodel = model;
-  Carname = name;
-  CarnumberOfGears = numberOfGears;
-  Carcolor = color;
+    
+	private int year;
+	private String make;
+	private String model; 
+	private String color; 
+	private String name;
+        private String sound;
+	private int numberOfGears;
+	private int currentGear;
+	private int operatingCycles;
+	private int Speed;
+	private int distance;  
+    
+	//creates car attributes
+	public void Automobile (int caryear, String carmake, String carmodel, String carcolor, String carname, int cargears, int carcycle) {
+	    
+		this.year = caryear;
+		this.make = carmake;
+		this.model = carmodel;
+		this.color = carcolor;
+		this.name = carname;
+		this.numberOfGears = cargears;
+		this.operatingCycles = carcycle;
 
- }
- public int  returnYear(){
-  return Caryear;  
- } 
-public String returnMake(){
-  return Carmake;  
- }
-public String  returnModel(){
- return Carmodel; 
-}
-public String returnName  (){
- return Carname; 
-}
-public int  returnCarGears(){
- return CarnumberOfGears;
-} 
-public String returnColor(){
- return Carcolor; 
-} 
- 
- 
- 
+	}
+    
+	public void car (int carcycle) {
+	
+		operatingCycles = carcycle;
+	    
+		
+		if (operatingCycles <= numberOfGears) 
+                {
+			currentGear = operatingCycles;
+		}    
+	    
+		// Establish the current vehicle's speed
+		Speed = currentGear * 10;
+	    
+		// Establish the current vehicle's distance traveled
+		distance += Speed;
+	    
+		// Set the sound of the car.
+		if (distance <= 10) 
+                {
+			sound = "purrrrrrrr";
+		}
+		if (distance > 10) 
+                {
+			sound = "vrooooooom";
+                        
+                if (distance < 100)  
+                        sound = "vrooooooom";
+		} 
+		if (distance > 100) {
+			sound = "sputter";
+			
+		}
+	    
+	}
+    
+    
+	public int returnSpeed () {
+		return this.Speed;
+	}
+    
+	public String returnSound () {
+		return this.sound;
+	}
+        
+        public String returnName () {
+		return this.name;
+	}
+    
+	public int returnCurrentGear () {
+		return this.numberOfGears;
+	}
+    
+	public int returnDistance () {
+		return this.distance;
+	}
+    
 }
