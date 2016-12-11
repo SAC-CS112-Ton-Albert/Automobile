@@ -1,93 +1,129 @@
 package automobile;
 
-/**
-*
-* @author albertton
-*/
 
+public class CreateCar implements Runnable {
 
-public class CreateCar {
+	public int caryear;
+        public int cargear = 0; 
+        public int operatingCycle = 0;
+        public int currentSpeed = 0;
+        public int currentGear = 0;
+	public String carmake = "";
+        public String carmodel = "";
+        public String carcolor = "";
+        public String carname = "";
+	public float distance = 0;
 
-    
-	private int year;
-	private String make;
-	private String model; 
-	private String color; 
-	private String name;
-        private String sound;
-	private int numberOfGears;
-	private int currentGear;
-	private int operatingCycles;
-	private int Speed;
-	private int distance;  
-    
-	//creates car attributes
-	public void Automobile (int caryear, String carmake, String carmodel, String carcolor, String carname, int cargears, int carcycle) {
-	    
-		this.year = caryear;
-		this.make = carmake;
-		this.model = carmodel;
-		this.color = carcolor;
-		this.name = carname;
-		this.numberOfGears = cargears;
-		this.operatingCycles = carcycle;
-
+	public CreateCar(int year, String make, String model, String color, String name, int gear) {
+		caryear = year;
+		carmake = make;
+		carmodel = model;
+		carname = name;
+		cargear = gear;
+		carcolor = color;
 	}
-    
-	public void car (int carcycle) {
-	
-		operatingCycles = carcycle;
-	    
+
+	public void setYear(int year) 
+        { 
+		caryear = year;
+	}
+
+	public void setMake(String make) 
+        {
+		carmake = make;
+	}
+
+	public void setModel(String model)
+        {
+		carmodel = model;
+	}
+
+	public void setColor(String color) 
+        { 
+		carcolor = color;
+	}
+
+	public void setName(String name) 
+        { 
+		carname = name;
+	}
+
+	public void setGears(int gear) { 
+		cargear = gear;
+	}
+
+	public void setOperatingCycle(int operatingCycle) { 
+		if (operatingCycle <= cargear)
+			currentGear = operatingCycle;
+
 		
-		if (operatingCycles <= numberOfGears) 
-                {
-			currentGear = operatingCycles;
-		}    
-	    
-		// Establish the current vehicle's speed
-		Speed = currentGear * 10;
-	    
-		// Establish the current vehicle's distance traveled
-		distance += Speed;
-	    
-		// Set the sound of the car.
-		if (distance <= 10) 
-                {
-			sound = "purrrrrrrr";
+	}
+
+	public int getYear() { 
+		return caryear;
+	}
+
+	public String getMake() { // allows user to get make of car
+		return carmake;
+	}
+
+	public String getModel() { // allows user to get model of car
+		return carmodel;
+	}
+
+	public String getColor() { // allows user to get color of car
+		return carcolor;
+	}
+
+	public String getName() { // allows user to get name of car
+		return carname;
+	}
+
+	public int getGear() { 
+		return cargear;
+	}
+
+	public int getOperatingCycle() { 
+		return operatingCycle;
+	}
+
+	public int currentGear() { 
+		if (operatingCycle > cargear) { 
+			currentGear = cargear;
+		} else {
+			currentGear = operatingCycle;
 		}
-		if (distance > 10) 
-                {
-			sound = "vrooooooom";
-                        
-                if (distance < 100)  
-                        sound = "vrooooooom";
-		} 
+		return currentGear;
+	}
+
+	public int getSpeed() { 
+		return currentSpeed;
+	}
+
+	public synchronized float getDistance() throws Exception { // returns distance
+
+		if (distance < 10)
+			System.out.println("Purr.");
+		else
+			System.out.println("Vroom.");
 		if (distance > 100) {
-			sound = "sputter";
-			
+			System.out.println("Sputter.");
 		}
-	    
+		return distance;
 	}
-    
-    
-	public int returnSpeed () {
-		return this.Speed;
+
+	public String toString() { // prints string of info based on Object
+		return "\n" + "Name: " + carname + "\nYear: " + caryear + "\nMake: " + carmake + "\nModel: " + carmodel
+				+ "\nColor: " + carcolor + "\nNumber of gears: " + cargear;
+                                        
+
 	}
-    
-	public String returnSound () {
-		return this.sound;
-	}
-        
-        public String returnName () {
-		return this.name;
-	}
-    
-	public int returnCurrentGear () {
-		return this.numberOfGears;
-	}
-    
-	public int returnDistance () {
-		return this.distance;
-	}
-    
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+	
+	
 }

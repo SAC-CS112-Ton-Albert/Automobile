@@ -1,73 +1,58 @@
 package automobile;
 
+/**
+*
+* @author albertton
+*/
+
+
 import java.util.Scanner;
 
+public class Automobile{
 
-public class Automobile {
+	public static void main(String[] args) throws Exception {
 
-public static void main(String[] args)
-  {
-      Scanner input = new Scanner(System.in);
-      
-      CreateCar myCar = new CreateCar();
-      
-      
-int year;
-String make;
-String model; 
-String color; 
-String name;
-String sound;
-int numberOfGears;
-int currentGear = 1;
-int operatingCycles = 1;
-int speed = 0;
-int distance = 0;  
-int replay = 0; //for the retry
-   
-   System.out.println("What is the name of your car?");
-   name = input.next();
-   
-   System.out.println("What is the make of your car?");
-   make = input.next();
-   
-   System.out.println("What is the model of your car?");
-   model = input.next();
-   
-   System.out.println("What is the year of your car?");
-   year = input.nextInt();
-   
-   System.out.println("What is the color of your car?");
-   color = input.next();
-   
-   System.out.println("What is the number of gears in your car?");
-   numberOfGears = input.nextInt();
-   
-   
-do {     
-   
-   myCar.Automobile(year, make, model, color, name,numberOfGears, operatingCycles);
-   myCar.car(operatingCycles);
-   System.out.println("Name: " + myCar.returnName());
-   System.out.println("Speed: " + myCar.returnSpeed());
-   System.out.println("Current Gear: " + myCar.returnCurrentGear());
-   System.out.println("Sound: " + myCar.returnSound());
-   
+		CreateCar Truck = new CreateCar(1999, "Toyota", "Tacoma", "Blue", "Trucky McTruckerson", 3);
 
-currentGear++;
+		CreateCar Van = new CreateCar(2001, "Toyota", "Sienna", "Burgendy", "Vann", 4);
 
+		CreateCar Sportcar = new CreateCar(1996, "Toyota", "Celica", "Red", "Fancy Pants Sport Car", 6);
 
-System.out.println("Your speed is " + (myCar.returnSpeed()) + ".");
+		Scanner input = new Scanner(System.in); // new scanner object input
 
+		System.out.println("How many dice would you like to roll?");
 
-System.out.println("Your distance is " + (myCar.returnDistance()) + ".");
+		int diceNumber = input.nextInt(); 
+                
+		int RaceCycles = Dice.ThrowDice(diceNumber);
 
-System.out.println("Your car's sound is " +myCar.returnSound() + ".");
+		String RaceStatus = ""; 
 
-System.out.println("Would you like to retry the process? Enter 0 to quit; press any key to add another operating cycle.");
-replay = input.nextInt();
-   
-  }
-while (replay != 0); }
-  
+		try {
+
+			Thread t1 = new Thread(Truck); // instantiates new thread t1
+			t1.start();
+
+			Thread t2 = new Thread(Van); // instantiates new thread t2
+			t2.start();
+
+			Thread t3 = new Thread(Sportcar); // instantiates new thread
+												// t3
+			t3.start();
+
+			System.out.println("");
+
+			float carSum = (Truck.getDistance() + Van.getDistance() + Sportcar.getDistance());
+
+			System.out.println("Total distance = " + carSum + ".");
+
+			System.out.println("Goodbye!");
+
+		} catch (Exception e) {
+			System.out.println("Warning");
+		}
+        }
+        
 }
+
+   
